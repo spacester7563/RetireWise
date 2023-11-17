@@ -5,14 +5,14 @@ const cors = require('cors');
 const { DiscussServiceClient } = require("@google-ai/generativelanguage");
 const { GoogleAuth } = require("google-auth-library");
 const accountSid = 'AC9ea63538f03dce4f3eddef960d33d12e';
-const authToken = '45171f3cdd0f12b406c417835396b17a';
+const authToken = '316a4466bb821c936388be71bc4c989d';
 
-const Twilio = require('twilio')(accountSid, authToken);
+const client = require('twilio')(accountSid, authToken);
 
 const MODEL_NAME = "models/chat-bison-001";
 const API_KEY = "AIzaSyAtQrMOR_sfIBucEPn3qH6Yy-yD54tLs-A";
 
-const client = new DiscussServiceClient({
+const clients = new DiscussServiceClient({
     authClient: new GoogleAuth().fromAPIKey(API_KEY),
 });
 
@@ -243,7 +243,7 @@ async function generate(promptString, senderId) {
         }
     ];
 
-    client.generateMessage({
+    clients.generateMessage({
         // required, which model to use to generate the result
         model: MODEL_NAME,
         // optional, 0.0 always uses the highest-probability result
@@ -277,7 +277,7 @@ async function generate(promptString, senderId) {
 }
 
 async function sendReply(generatedText, senderId) {
-    await Twilio.messages
+    await client.messages
         .create({
             from: 'whatsapp:+14155238886',
             body: generatedText,
