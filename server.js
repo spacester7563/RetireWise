@@ -28,7 +28,12 @@ app.post('/whatsapp', async (req, res) => {
     const senderId = req.body.From;
     console.log(message)
     console.log(senderId)
-    generate(message, senderId);
+    
+    try {
+        await generate(message, senderId);
+    } catch (error) {
+        console.error('Error during message generation:', error);
+    }
 
 });
 
@@ -266,6 +271,8 @@ async function generate(promptString, senderId) {
         sendReply(author1Content, senderId)
 
         console.log(author1Content);
+    }).catch(error => {
+        console.error('Error during message generation:', error);
     });
 }
 
