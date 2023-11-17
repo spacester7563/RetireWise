@@ -1,16 +1,18 @@
 const express = require('express');
 const app = express();
 const port = 5000;
+const dotenv = require('dotenv');
 const cors = require('cors');
 const { DiscussServiceClient } = require("@google-ai/generativelanguage");
 const { GoogleAuth } = require("google-auth-library");
-const accountSid = 'AC9ea63538f03dce4f3eddef960d33d12e';
-const authToken = '316a4466bb821c936388be71bc4c989d';
-
+dotenv.config();
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+require('dotenv').config({ path: "./sample.env" });
 const client = require('twilio')(accountSid, authToken);
 
 const MODEL_NAME = "models/chat-bison-001";
-const API_KEY = "AIzaSyAtQrMOR_sfIBucEPn3qH6Yy-yD54tLs-A";
+const API_KEY = process.env.API_KEY;
 
 const clients = new DiscussServiceClient({
     authClient: new GoogleAuth().fromAPIKey(API_KEY),
@@ -18,7 +20,6 @@ const clients = new DiscussServiceClient({
 
 app.use(cors())
 app.use(express.json());
-
 app.use(express.urlencoded({ extended: false }));
 
 
