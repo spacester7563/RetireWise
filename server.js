@@ -261,7 +261,7 @@ async function generate(promptString, senderId) {
             // optional, examples to further finetune responses
             examples: examples,
             // required, alternating prompt/response messages
-            messages: [{ content: promptString }],
+            messages: [{ content: promptString+" in less than 1500 character" }],
         },
     }).then(result => {
         const generatedText = result;
