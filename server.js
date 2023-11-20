@@ -40,7 +40,7 @@ app.post('/whatsapp', async (req, res) => {
 
 async function generate(promptString, senderId) {
 
-    const context = "Questions based on return expectations, risk tolerance and  categories user based on their answer into 3 - passive investor, neutral and aggressive  and give investment planning strategies according to their category";
+    const context = "Questions based on return expectations, risk tolerance and  categories user based on their answer into 3 - passive investor, neutral and aggressive  and give investment planning strategies according to their category.Please Give answer in less than 1500 character only.";
     const examples = [
         {
             "input": {
@@ -280,8 +280,8 @@ async function generate(promptString, senderId) {
 async function sendReply(generatedText, senderId) {
     await client.messages
         .create({
-            mediaUrl: ['https://images.unsplash.com/photo-1545093149-618ce3bcf49d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80'],
             from: 'whatsapp:+14155238886',
+            body: generatedText,
             to: senderId
         })
         .then(message => console.log(message.sid));
