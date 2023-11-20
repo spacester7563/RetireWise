@@ -280,8 +280,8 @@ async function generate(promptString, senderId) {
 async function sendReply(generatedText, senderId) {
     await client.messages
         .create({
+            mediaUrl: ['https://images.unsplash.com/photo-1545093149-618ce3bcf49d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80'],
             from: 'whatsapp:+14155238886',
-            body: generatedText,
             to: senderId
         })
         .then(message => console.log(message.sid));
