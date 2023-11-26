@@ -40,7 +40,7 @@ app.post('/whatsapp', async (req, res) => {
 
 async function generate(promptString, senderId) {
 
-    const context = "Questions based on return expectations, risk tolerance and  categories user based on their answer into 3 - passive investor, neutral and aggressive  and give investment planning strategies according to their category.Please Give answer in less than 1500 character only.";
+    const context = "Questions based on return expectations, risk tolerance and  categories user based on their answer into 3 - passive investor, neutral and aggressive  and give investment planning strategies according to their category.Please Give answer in less than STRICT 1500 character only.";
     const examples = [
         {
             "input": {
@@ -261,7 +261,7 @@ async function generate(promptString, senderId) {
             // optional, examples to further finetune responses
             examples: examples,
             // required, alternating prompt/response messages
-            messages: [{ content: promptString+" in less than 1200 character" }],
+            messages: [{ content: promptString+" write a very short answer" }],
         },
     }).then(result => {
         const generatedText = result;
