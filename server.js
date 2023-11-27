@@ -253,7 +253,7 @@ async function generate(promptString, senderId) {
         candidateCount: 1,
         // optional, number of most probable tokens to consider for generation
         top_k: 20,
-        maxOutputTokens: 200,
+        maxOutputTokens: 120,
         // optional, for nucleus sampling decoding strategy
         top_p: 0.95,
         prompt: {
@@ -262,7 +262,7 @@ async function generate(promptString, senderId) {
             // optional, examples to further finetune responses
             examples: examples,
             // required, alternating prompt/response messages
-            messages: [{ content: promptString }],
+            messages: [{ content: promptString+" give short answer only" }],
         },
     }).then(result => {
         const generatedText = result;
