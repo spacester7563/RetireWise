@@ -262,7 +262,7 @@ async function generate(promptString, senderId) {
             // optional, examples to further finetune responses
             examples: examples,
             // required, alternating prompt/response messages
-            messages: [{ content: promptString+" give short answer only" }],
+            messages: [{ content: promptString }],
         },
     }).then(result => {
         const generatedText = result;
