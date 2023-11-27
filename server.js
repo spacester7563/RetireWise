@@ -252,8 +252,8 @@ async function generate(promptString, senderId) {
         // optional, how many candidate results to generate
         candidateCount: 1,
         // optional, number of most probable tokens to consider for generation
-        top_k: 40,
-        maxOutputTokens: 256,
+        top_k: 20,
+        maxOutputTokens: 200,
         // optional, for nucleus sampling decoding strategy
         top_p: 0.95,
         prompt: {
